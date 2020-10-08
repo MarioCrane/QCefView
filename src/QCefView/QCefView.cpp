@@ -248,6 +248,19 @@ public:
       pQCefViewHandler_->SetKeyboardHandler(handler);
   }
 
+  void showDevTools() 
+  {
+    auto browser = pQCefViewHandler_->GetBrowser();
+    CefWindowInfo windowInfo;
+    CefBrowserSettings settings;
+
+#if defined(OS_WIN)
+    windowInfo.SetAsPopup(browser->GetHost()->GetWindowHandle(), "DevTools");
+#endif
+
+    browser->GetHost()->ShowDevTools(windowInfo, browser->GetHost()->GetClient(), settings, CefPoint());
+  }
+  
 private:
   /// <summary>
   ///
@@ -471,6 +484,13 @@ QCefView::setKeyboardHandler(CefKeyboardHandler* handler)
 {
   if (pImpl_)
     return pImpl_->setKeyboardHandler(handler);
+}
+
+void
+QCefView::showDevTools()
+{
+  if (pImpl_)
+    pImpl_->showDevTools();
 }
 
 void
