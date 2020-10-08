@@ -206,6 +206,11 @@ public:
   /// </summary>
   /// <param name="handler"></param>
   void setKeyboardHandler(CefKeyboardHandler* handler);
+  
+  /// <summary>
+  ///
+  /// </summary>
+  void showDevTools();
 
 protected:
   /// <summary>
